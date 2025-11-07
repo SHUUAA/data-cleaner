@@ -24,6 +24,22 @@ const App: React.FC = () => {
     setSubmissionError(null); // Also reset error state
   }, []);
 
+  const handleSelectAll = useCallback(() => {
+    if (selectedCountries.size === countries.length) {
+      setSelectedCountries(new Set());
+    } else {
+      setSelectedCountries(new Set(countries));
+    }
+    setSubmitted(false);
+    setSubmissionError(null);
+  }, [selectedCountries.size]);
+
+  const handleClearSelections = useCallback(() => {
+    setSelectedCountries(new Set());
+    setSubmitted(false);
+    setSubmissionError(null);
+  }, []);
+
   const handleSubmit = async () => {
     if (selectedCountries.size === 0 || isSubmitting) {
       return;
@@ -34,7 +50,7 @@ const App: React.FC = () => {
     setSubmissionError(null);
 
     const webhookUrl =
-      "https://primary-production-aa7d9.up.railway.app/webhook/submit";
+      "https://primary-production-aa7d9.up.railway.app/webhook-test/submit";
     const countriesWithRawData = Array.from(selectedCountries).map(
       (country) => `${country} (raw data)`
     );
@@ -68,6 +84,8 @@ const App: React.FC = () => {
     }
   };
 
+  const allSelected = selectedCountries.size === countries.length;
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
       <div className="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-8 lg:p-10 transform transition-all duration-500">
@@ -81,6 +99,22 @@ const App: React.FC = () => {
         </header>
 
         <main>
+          <div className="flex justify-end mb-4 space-x-2">
+            <button
+              onClick={handleSelectAll}
+              className="px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/50 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 transition-colors"
+            >
+              {allSelected ? "Deselect All" : "Select All"}
+            </button>
+            <button
+              onClick={handleClearSelections}
+              disabled={selectedCountries.size === 0}
+              className="px-4 py-2 text-sm font-medium text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/50 rounded-lg hover:bg-red-200 dark:hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Clear Selections
+            </button>
+          </div>
+
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-10">
             {countries.map((country) => (
               <CountryButton
@@ -151,9 +185,6 @@ const App: React.FC = () => {
           </div>
         </main>
       </div>
-      <footer className="mt-8 text-center text-gray-500 dark:text-gray-400 text-sm">
-        <p>Built with React, TypeScript, and Tailwind CSS.</p>
-      </footer>
     </div>
   );
 };
