@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./App.css";
 
 const App = () => {
@@ -26,33 +27,20 @@ const App = () => {
         (country) => `${country} (raw data)`
       );
 
-      const response = await fetch("/api/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await axios.post("/api/submit", {
+        data: {
+          countries: formattedCountries,
         },
-        body: JSON.stringify({
-          data: {
-            countries: formattedCountries,
-          },
-        }),
       });
 
       console.log("Request sent:", {
         countries: formattedCountries,
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Response error:", errorText);
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Success:", result);
+      console.log("Success:", response.data);
       alert("Countries submitted successfully!");
     } catch (error) {
-      console.error("Error details:", error);
+      console.error("Error details:", error.response?.data || error.message);
       alert(
         "Failed to submit countries. Please check the console for details."
       );
