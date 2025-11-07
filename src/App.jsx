@@ -14,13 +14,32 @@ const App = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (selectedCountries.length === 0) {
       alert("Please select at least one country");
       return;
     }
-    console.log("Selected countries:", selectedCountries);
-    // Add your submission logic here
+    
+    try {
+      const response = await fetch('https://primary-production-aa7d9.up.railway.app/webhook/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ countries: selectedCountries })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log('Success:', result);
+      alert('Countries submitted successfully!');
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to submit countries. Please try again.');
+    }
   };
 
   const countries = [
