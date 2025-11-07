@@ -1,4 +1,3 @@
-
 export const countries: string[] = [
   "Ivory Coast",
   "Philippines",
@@ -11,4 +10,6 @@ export const countries: string[] = [
   "Uganda",
   "Kenya",
   "Democratic Congo",
+  "Tonga",
+  "Fiji",
 ];
