@@ -50,7 +50,7 @@ const App: React.FC = () => {
     setSubmissionError(null);
 
     const webhookUrl =
-      "https://primary-production-aa7d9.up.railway.app/webhook-test/submit";
+      "https://primary-production-aa7d9.up.railway.app/webhook/submit";
     const countriesWithRawData = Array.from(selectedCountries).map(
       (country) => `${country} (raw data)`
     );
