@@ -1,0 +1,5 @@
+{
+  "name": "Country Selector",
+  "description": "A visually appealing web application that allows users to select one or multiple countries from a list and submit their selection.",
+  "requestFramePermissions": []
+}
