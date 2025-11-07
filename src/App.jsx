@@ -26,22 +26,17 @@ const App = () => {
         (country) => `${country} (raw data)`
       );
 
-      const response = await fetch(
-        "https://primary-production-aa7d9.up.railway.app/webhook/submit",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+      const response = await fetch("/api/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: {
+            countries: formattedCountries,
           },
-          mode: "cors",
-          body: JSON.stringify({
-            data: {
-              countries: formattedCountries,
-            },
-          }),
-        }
-      );
+        }),
+      });
 
       console.log("Request sent:", {
         countries: formattedCountries,
