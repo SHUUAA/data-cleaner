@@ -20,8 +20,8 @@ const App: React.FC = () => {
       }
       return newSelected;
     });
-    setSubmitted(false); // Reset submitted state on new selection
-    setSubmissionError(null); // Also reset error state
+    setSubmitted(false);
+    setSubmissionError(null);
   }, []);
 
   const handleSelectAll = useCallback(() => {
@@ -87,13 +87,16 @@ const App: React.FC = () => {
   const allSelected = selectedCountries.size === countries.length;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
-      <div className="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-8 lg:p-10 transform transition-all duration-500">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 font-sans antialiased">
+      <div className="w-full max-w-4xl bg-white/40 backdrop-blur-xl border border-white/50 rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 text-neutral-800">
         <header className="text-center mb-8">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 mb-2">
-            Country Selector
+          <h1
+            className="font-serif text-5xl sm:text-6xl font-bold text-neutral-900 mb-3"
+            style={{ textShadow: "0 1px 10px rgba(0,0,0,0.1)" }}
+          >
+            Data Cleaner
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
+          <p className="text-lg text-neutral-600/90">
             Select one or more countries below and click submit.
           </p>
         </header>
@@ -102,14 +105,14 @@ const App: React.FC = () => {
           <div className="flex justify-end mb-4 space-x-2">
             <button
               onClick={handleSelectAll}
-              className="px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/50 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 transition-colors"
+              className="px-4 py-2 text-sm font-semibold text-neutral-700 bg-black/5 backdrop-blur-md border border-black/10 rounded-lg hover:bg-black/10 hover:text-black focus:outline-none focus:ring-2 focus:ring-black/30 transition-colors"
             >
               {allSelected ? "Deselect All" : "Select All"}
             </button>
             <button
               onClick={handleClearSelections}
               disabled={selectedCountries.size === 0}
-              className="px-4 py-2 text-sm font-medium text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/50 rounded-lg hover:bg-red-200 dark:hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 text-sm font-semibold text-neutral-700 bg-black/5 backdrop-blur-md border border-black/10 rounded-lg hover:bg-black/10 hover:text-black focus:outline-none focus:ring-2 focus:ring-black/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Clear Selections
             </button>
@@ -128,9 +131,9 @@ const App: React.FC = () => {
 
           <div className="min-h-[72px] flex flex-col justify-center mb-6">
             {submitted && (
-              <div className="p-4 bg-green-100 dark:bg-green-900/50 border-l-4 border-green-500 rounded-lg text-green-800 dark:text-green-200 animate-fade-in">
+              <div className="p-4 bg-green-400/30 backdrop-blur-md border border-green-500/50 rounded-lg text-green-900 animate-fade-in">
                 <p className="font-semibold">Submission Successful!</p>
-                <p>
+                <p className="text-sm">
                   Data sent to webhook:{" "}
                   {Array.from(selectedCountries)
                     .map((c) => `${c} (raw data)`)
@@ -141,9 +144,9 @@ const App: React.FC = () => {
             )}
 
             {submissionError && (
-              <div className="p-4 bg-red-100 dark:bg-red-900/50 border-l-4 border-red-500 rounded-lg text-red-800 dark:text-red-200 animate-fade-in">
+              <div className="p-4 bg-red-400/30 backdrop-blur-md border border-red-500/50 rounded-lg text-red-900 animate-fade-in">
                 <p className="font-semibold">Submission Failed</p>
-                <p>{submissionError}</p>
+                <p className="text-sm">{submissionError}</p>
               </div>
             )}
           </div>
@@ -152,13 +155,13 @@ const App: React.FC = () => {
             <button
               onClick={handleSubmit}
               disabled={selectedCountries.size === 0 || isSubmitting}
-              className="w-full sm:w-auto px-12 py-4 text-lg font-bold text-white bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed disabled:shadow-none focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition-all duration-300 ease-in-out transform hover:scale-105 disabled:scale-100 flex items-center justify-center"
+              className="w-full sm:w-auto px-12 py-4 text-lg font-bold text-white bg-rose-500 rounded-full shadow-lg shadow-rose-500/30 hover:bg-rose-600 disabled:bg-gray-400/50 disabled:border-gray-500/50 disabled:cursor-not-allowed disabled:shadow-none focus:outline-none focus:ring-4 focus:ring-rose-500/40 transition-all duration-300 ease-in-out transform hover:scale-105 disabled:scale-100 flex items-center justify-center"
             >
               {isSubmitting ? (
                 <>
                   <svg
                     className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns="http://www.w.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                   >

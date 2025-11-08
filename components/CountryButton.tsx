@@ -12,13 +12,12 @@ const CountryButton: React.FC<CountryButtonProps> = ({
   onClick,
 }) => {
   const baseClasses =
-    "w-full h-full px-3 py-4 text-center font-semibold rounded-lg shadow-md border-2 transition-all duration-200 ease-in-out transform focus:outline-none focus:ring-4";
+    "w-full h-full px-2 py-4 text-center text-sm font-semibold rounded-xl shadow-lg transition-all duration-300 ease-in-out transform focus:outline-none focus:ring-2 focus:ring-rose-500/70";
 
-  const selectedClasses =
-    "bg-blue-500 border-blue-600 text-white hover:bg-blue-600 scale-105 shadow-blue-500/50 focus:ring-blue-300 dark:focus:ring-blue-800";
+  const selectedClasses = "bg-rose-500 text-white scale-105 shadow-rose-500/40";
 
   const unselectedClasses =
-    "bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-500 dark:hover:text-blue-400 hover:scale-105 focus:ring-blue-300 dark:focus:ring-blue-800";
+    "bg-white/30 backdrop-blur-md border border-white/40 text-neutral-700 hover:bg-white/50 hover:text-neutral-900 hover:scale-105";
 
   return (
     <button

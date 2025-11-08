@@ -4,36 +4,179 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Country Selector</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            animation: {
-              'fade-in': 'fadeIn 0.5s ease-in-out',
+            colors: {
+              cream: "#F4F1EC",
+              rose: {
+                500: "#f43f5e",
+                600: "#e11d48",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
             },
             keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
+              "fade-in": {
+                "0%": { opacity: "0", transform: "translateY(-10px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
               },
-            }
-          }
+            },
+            animation: {
+              "fade-in": "fade-in 0.5s ease-out forwards",
+            },
+          },
+        },
+      };
+    </script>
+    <script type="importmap">
+      {
+        "imports": {
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+          "react/": "https://aistudiocdn.com/react@^19.2.0/",
+          "react": "https://aistudiocdn.com/react@^19.2.0"
         }
       }
     </script>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
-  <body class="bg-gray-100 dark:bg-gray-900">
+    <style>
+      @keyframes move-blob-1 {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(20vw, -15vh) scale(1.1);
+        }
+        50% {
+          transform: translate(5vw, 10vh) scale(0.9);
+        }
+        75% {
+          transform: translate(-15vw, -10vh) scale(1.2);
+        }
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+      }
+      @keyframes move-blob-2 {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(-15vw, 15vh) scale(1.2);
+        }
+        50% {
+          transform: translate(10vw, -5vh) scale(0.8);
+        }
+        75% {
+          transform: translate(5vw, 10vh) scale(1.1);
+        }
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+      }
+      @keyframes grain {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        10% {
+          transform: translate(-5%, -10%);
+        }
+        20% {
+          transform: translate(-15%, 5%);
+        }
+        30% {
+          transform: translate(7%, -25%);
+        }
+        40% {
+          transform: translate(-5%, 25%);
+        }
+        50% {
+          transform: translate(-15%, 10%);
+        }
+        60% {
+          transform: translate(15%, 0%);
+        }
+        70% {
+          transform: translate(0%, 15%);
+        }
+        80% {
+          transform: translate(3%, 35%);
+        }
+        90% {
+          transform: translate(-10%, 10%);
+        }
+      }
+
+      html {
+        background-color: #f4f1ec;
+      }
+      body {
+        overflow: hidden;
+      }
+      .grain-overlay {
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        z-index: 1;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWYmJitbW1xcXFsbGxpaWhwcHDX19fAwMBgYGDExMSKiooZGRkgICAfHx9XV1eQmCC/AAAAAXRSTlMAQObYZgAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAVVJREFUOI2lVwmygyAQRhAFUREV3fn/n3tEVGRp1ea8SffsLUtL55f7QAAeiA1R8e0k7l1ZqpOiuFsoGgLwvyg0g2lA1RzQ7YSAJWBQu2tr49f2kcFw+wI9gOSgoH6wQ1kFk2M8x3EBGkGIAuKAQoDSg4rBBlkHCAU2YpAhAF2YaSpA20lIC2Iq4Q2o3YkNAbQ+L+74Vb0c2PljWo3gB2yIBUjKSASQ1d2B1dGhlJgRXLRBhhcEwhuY1SVs9uFvNTS3YhS0g1Q1W1FsgMWv4c3I2nhcIkjW3o2jYxL2Q29jZ2kC2o2e1u1dAB3Q3E5a2FgoADg4uFgoBvU0XHgx0B+/g9wc2FDgL2PAW3Po2UgvfNfFDE3xOoHdnL34+sBe1MR3Q0Y2tz4OQvH9sNNetp3gkL3C6B9esZX0wX+C/1f8wA0hNmqu+2sAAAAASUVORK5CYII=);
+        animation: grain 8s steps(10) infinite;
+        opacity: 0.08;
+        pointer-events: none;
+      }
+      .blob {
+        position: fixed;
+        z-index: -1;
+        border-radius: 50%;
+        opacity: 0.9;
+        filter: blur(120px);
+        will-change: transform;
+      }
+      .blob-1 {
+        width: 50vw;
+        height: 50vw;
+        max-width: 500px;
+        max-height: 500px;
+        top: -10%;
+        right: -10%;
+        background: linear-gradient(
+          180deg,
+          rgba(244, 63, 94, 0.7) 0%,
+          rgba(251, 146, 60, 0.7) 100%
+        );
+        animation: move-blob-1 40s infinite alternate ease-in-out;
+      }
+      .blob-2 {
+        width: 45vw;
+        height: 45vw;
+        max-width: 550px;
+        max-height: 550px;
+        bottom: -15%;
+        left: -15%;
+        background: linear-gradient(
+          180deg,
+          rgba(59, 130, 246, 0.6) 0%,
+          rgba(236, 72, 153, 0.7) 100%
+        );
+        animation: move-blob-2 35s infinite alternate ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grain-overlay"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
