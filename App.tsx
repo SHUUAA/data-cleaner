@@ -94,7 +94,7 @@ const App: React.FC = () => {
             className="font-serif text-5xl sm:text-6xl font-bold text-neutral-900 mb-3"
             style={{ textShadow: "0 1px 10px rgba(0,0,0,0.1)" }}
           >
-            Country Selector
+            Data Cleaner
           </h1>
           <p className="text-lg text-neutral-600/90">
             Select one or more countries below and click submit.
