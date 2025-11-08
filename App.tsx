@@ -88,21 +88,21 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 font-sans antialiased">
-      <div className="w-full max-w-4xl bg-white/40 backdrop-blur-xl border border-white/50 rounded-3xl shadow-2xl p-4 sm:p-8 lg:p-10 text-neutral-800">
+      <div className="w-full max-w-4xl bg-white/40 backdrop-blur-xl border border-white/50 rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 text-neutral-800">
         <header className="text-center mb-8">
           <h1
-            className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 mb-3"
+            className="font-serif text-5xl sm:text-6xl font-bold text-neutral-900 mb-3"
             style={{ textShadow: "0 1px 10px rgba(0,0,0,0.1)" }}
           >
-            Data Cleaner
+            Country Selector
           </h1>
-          <p className="text-base sm:text-lg text-neutral-600/90">
+          <p className="text-lg text-neutral-600/90">
             Select one or more countries below and click submit.
           </p>
         </header>
 
         <main>
-          <div className="flex flex-wrap justify-start sm:justify-end gap-2 mb-4">
+          <div className="flex justify-end mb-4 space-x-2">
             <button
               onClick={handleSelectAll}
               className="px-4 py-2 text-sm font-semibold text-neutral-700 bg-black/5 backdrop-blur-md border border-black/10 rounded-lg hover:bg-black/10 hover:text-black focus:outline-none focus:ring-2 focus:ring-black/30 transition-colors"
@@ -155,13 +155,13 @@ const App: React.FC = () => {
             <button
               onClick={handleSubmit}
               disabled={selectedCountries.size === 0 || isSubmitting}
-              className="w-full sm:w-auto px-12 py-3 sm:py-4 text-lg font-bold text-white bg-rose-500 rounded-full shadow-lg shadow-rose-500/30 hover:bg-rose-600 disabled:bg-gray-400/50 disabled:border-gray-500/50 disabled:cursor-not-allowed disabled:shadow-none focus:outline-none focus:ring-4 focus:ring-rose-500/40 transition-all duration-300 ease-in-out transform hover:scale-105 disabled:scale-100 flex items-center justify-center"
+              className="w-full sm:w-auto px-12 py-4 text-lg font-bold text-white bg-rose-500 rounded-full shadow-lg shadow-rose-500/30 hover:bg-rose-600 disabled:bg-gray-400/50 disabled:border-gray-500/50 disabled:cursor-not-allowed disabled:shadow-none focus:outline-none focus:ring-4 focus:ring-rose-500/40 transition-all duration-300 ease-in-out transform hover:scale-105 disabled:scale-100 flex items-center justify-center"
             >
               {isSubmitting ? (
                 <>
                   <svg
                     className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns="http://www.w.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                   >
