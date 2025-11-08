@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import CountryButton from "./components/CountryButton";
-import { countries } from "./constants";
+import { countries, regions } from "./constants";
 
 const App: React.FC = () => {
   const [selectedCountries, setSelectedCountries] = useState<Set<string>>(
@@ -87,7 +87,7 @@ const App: React.FC = () => {
   const allSelected = selectedCountries.size === countries.length;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 font-sans antialiased">
+    <div className="min-h-screen flex flex-col items-center px-4 py-12 sm:px-6 lg:px-8 lg:py-20 font-sans antialiased">
       <div className="w-full max-w-4xl bg-white/40 backdrop-blur-xl border border-white/50 rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 text-neutral-800">
         <header className="text-center mb-8">
           <h1
@@ -118,14 +118,23 @@ const App: React.FC = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-10">
-            {countries.map((country) => (
-              <CountryButton
-                key={country}
-                countryName={country}
-                isSelected={selectedCountries.has(country)}
-                onClick={() => handleCountryClick(country)}
-              />
+          <div className="space-y-8 mb-10">
+            {regions.map((region) => (
+              <div key={region.name}>
+                <h2 className="text-xl font-bold text-neutral-800 mb-4 border-b-2 border-rose-200 pb-2">
+                  {region.name}
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                  {region.countries.map((country) => (
+                    <CountryButton
+                      key={country}
+                      countryName={country}
+                      isSelected={selectedCountries.has(country)}
+                      onClick={() => handleCountryClick(country)}
+                    />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
 
@@ -161,7 +170,7 @@ const App: React.FC = () => {
                 <>
                   <svg
                     className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w.org/2000/svg"
+                    xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                   >
