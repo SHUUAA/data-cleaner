@@ -102,8 +102,10 @@ const App: React.FC = () => {
         setIsSubmitting(false);
         return;
       }
-      webhookUrl =
-        "https://primary-production-aa7d9.up.railway.app/webhook/submit";
+      webhookUrl = "https://1566-784.n8nbysnbd.top/webhook/submit";
+
+      // "https://primary-production-aa7d9.up.railway.app/webhook/submit";
+      // "https://seal-neutral-nationally.ngrok-free.app/webhook/submit"
       const countriesWithRawData = Array.from(selectedCountries).map(
         (country) => `${country} (raw data)`
       );
@@ -115,8 +117,10 @@ const App: React.FC = () => {
         setIsSubmitting(false);
         return;
       }
-      webhookUrl =
-        "https://primary-production-aa7d9.up.railway.app/webhook/assessment";
+      webhookUrl = "https://1566-784.n8nbysnbd.top/webhook/assessment";
+
+      // "https://primary-production-aa7d9.up.railway.app/webhook/assessment";
+      // "https://seal-neutral-nationally.ngrok-free.app/webhook/assessment";
       const assessmentsData = Array.from(selectedAssessments);
       payload = { assessments: assessmentsData };
       dataForSuccessMessage = assessmentsData.join(", ");
