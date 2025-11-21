@@ -144,7 +144,7 @@ const App: React.FC = () => {
       console.log("Submission successful");
       setSubmissionResult({
         success: true,
-        message: `Data sent to webhook: ${dataForSuccessMessage}.`,
+        message: `Data sent: ${dataForSuccessMessage}.`,
       });
     } catch (error) {
       console.error("Submission failed:", error);
