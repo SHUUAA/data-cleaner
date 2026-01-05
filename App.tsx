@@ -102,7 +102,7 @@ const App: React.FC = () => {
         setIsSubmitting(false);
         return;
       }
-      webhookUrl = "https://1566-784.n8nbysnbd.top/webhook/submit";
+      webhookUrl = "https://aiagentlifewoodph.app.n8n.cloud/webhook/enrollment";
 
       // "https://primary-production-aa7d9.up.railway.app/webhook/submit";
       // "https://seal-neutral-nationally.ngrok-free.app/webhook/submit"
@@ -117,7 +117,7 @@ const App: React.FC = () => {
         setIsSubmitting(false);
         return;
       }
-      webhookUrl = "https://1566-784.n8nbysnbd.top/webhook/assessment";
+      webhookUrl = "https://aiagentlifewoodph.app.n8n.cloud/webhook/assessment";
 
       // "https://primary-production-aa7d9.up.railway.app/webhook/assessment";
       // "https://seal-neutral-nationally.ngrok-free.app/webhook/assessment";
